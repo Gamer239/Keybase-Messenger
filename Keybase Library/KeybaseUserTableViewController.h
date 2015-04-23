@@ -11,6 +11,7 @@
 #import "Conversation.h"
 #import "MessageViewController.h"
 #import "UserCell.h"
+#import "Keybase.h"
 
 @interface KeybaseUserTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
