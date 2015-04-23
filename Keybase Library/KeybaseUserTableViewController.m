@@ -148,10 +148,26 @@
 
 - (IBAction)keybaseLogin:(id)sender
 {
-    [[Keybase KeybaseLib] keybase_getsalt:@"gamer239" completed:^(NSData* data){ NSDictionary* jsonData = [[Keybase KeybaseLib] convertJsonData:data]; NSLog(@"%@", jsonData);}];
-    [[Keybase KeybaseLib] keybase_login:@"gamer239" password:@"KIsr236OnQzxSKZ2pNpa" completed:^(NSData* data){ NSDictionary* jsonData = [[Keybase KeybaseLib] convertJsonData:data]; NSLog(@"%@", jsonData);}];
+    [[Keybase KeybaseLib] keybase_getsalt:@"gamer239" completed:^(NSData* data){ NSDictionary* jsonData = [[Keybase KeybaseLib] convertJsonData:data]; NSLog(@"%@", jsonData);
     
-    [[Keybase KeybaseLib] ]
+    
+        [[Keybase KeybaseLib] keybase_login:@"gamer239" password:@"KIsr236OnQzxSKZ2pNpa" completed:^(NSData* data)
+         {
+             NSDictionary* jsonData = [[Keybase KeybaseLib] convertJsonData:data];
+             //NSLog(@"%@", jsonData);
+             //if ([[[Keybase KeybaseLib] keybase_status]  isEqual: @"0"])
+             //{
+                 self.navigationItem.leftBarButtonItem.title = @"Logout";
+             //}
+             NSArray* status = jsonData[@"status"];
+             NSLog(@"%@", status);
+             
+         }];
+    
+    }];
+    
+    
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

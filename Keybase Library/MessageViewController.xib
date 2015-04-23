@@ -2,10 +2,13 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MessageViewController">
             <connections>
+                <outlet property="messages" destination="IHw-47-XhH" id="fW0-qo-avV"/>
+                <outlet property="searchDisplayController" destination="Yvh-Ow-2og" id="oXI-11-QBi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,33 +17,54 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DHW-vN-YPv">
-                    <rect key="frame" x="63" y="215" width="46" height="30"/>
-                    <state key="normal" title="Button">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                </button>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="k6W-gU-aC6">
-                    <rect key="frame" x="41" y="296" width="123" height="29"/>
-                    <segments>
-                        <segment title="First"/>
-                        <segment title="Second"/>
-                    </segments>
-                </segmentedControl>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tem-9y-B7R">
-                    <rect key="frame" x="12" y="71" width="152" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M3y-Dn-oCv">
+                    <rect key="frame" x="8" y="562" width="584" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="send"/>
                 </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m7x-or-LFv">
-                    <rect key="frame" x="81" y="141" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <searchBar contentMode="redraw" text="" placeholder="Enter a username" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G7O-rC-LoR">
+                    <rect key="frame" x="0.0" y="67" width="600" height="44"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <scopeButtonTitles>
+                        <string base64-UTF8="YES">
+ICAgICAgA
+</string>
+                        <string base64-UTF8="YES">
+ICA
+</string>
+                    </scopeButtonTitles>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="Cfj-sJ-aae"/>
+                    </connections>
+                </searchBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="IHw-47-XhH">
+                    <rect key="frame" x="0.0" y="111" width="600" height="443"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="M3y-Dn-oCv" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottomMargin" id="1Om-fg-AY3"/>
+                <constraint firstItem="G7O-rC-LoR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="67" id="3ma-pE-y1t"/>
+                <constraint firstItem="IHw-47-XhH" firstAttribute="top" secondItem="G7O-rC-LoR" secondAttribute="bottom" id="CD6-sL-nA4"/>
+                <constraint firstItem="M3y-Dn-oCv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="P8I-mS-bP0"/>
+                <constraint firstItem="IHw-47-XhH" firstAttribute="trailing" secondItem="G7O-rC-LoR" secondAttribute="trailing" id="PyA-PU-d6X"/>
+                <constraint firstItem="G7O-rC-LoR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Td6-79-yqy"/>
+                <constraint firstItem="M3y-Dn-oCv" firstAttribute="centerX" secondItem="G7O-rC-LoR" secondAttribute="centerX" id="iYq-zw-yUq"/>
+                <constraint firstItem="M3y-Dn-oCv" firstAttribute="top" secondItem="IHw-47-XhH" secondAttribute="bottom" constant="8" symbolic="YES" id="o0S-xB-ETf"/>
+                <constraint firstItem="IHw-47-XhH" firstAttribute="leading" secondItem="G7O-rC-LoR" secondAttribute="leading" id="sim-6s-I0V"/>
+                <constraint firstAttribute="trailing" secondItem="G7O-rC-LoR" secondAttribute="trailing" id="vKW-t1-VQd"/>
+            </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
         </view>
+        <searchDisplayController id="Yvh-Ow-2og">
+            <connections>
+                <outlet property="delegate" destination="-1" id="kyS-ne-WwX"/>
+                <outlet property="searchBar" destination="G7O-rC-LoR" id="1Ko-Nx-ChW"/>
+                <outlet property="searchContentsController" destination="-1" id="GdR-2G-50B"/>
+                <outlet property="searchResultsDataSource" destination="-1" id="zyq-Zg-vA9"/>
+                <outlet property="searchResultsDelegate" destination="-1" id="tcn-Gl-GdE"/>
+            </connections>
+        </searchDisplayController>
     </objects>
 </document>

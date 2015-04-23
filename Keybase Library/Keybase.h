@@ -16,7 +16,7 @@
 
 @property (nonatomic, readonly) NSString* keybase_base_url;
 @property (nonatomic, readonly) NSURL* keybase_request_url;
-@property (nonatomic, readonly) NSInteger keybase_status;
+//@property (nonatomic, readonly) NSString* keybase_status;
 
 +(instancetype) KeybaseLib;
 

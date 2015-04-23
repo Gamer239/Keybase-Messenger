@@ -28,6 +28,14 @@
 		B43D8E4F1AE86C8C00F7B956 /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B43D8E4D1AE86C8C00F7B956 /* MessageViewController.xib */; };
 		B43D8E531AE8853A00F7B956 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B43D8E511AE8853A00F7B956 /* UserCell.m */; };
 		B43D8E541AE8853A00F7B956 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B43D8E521AE8853A00F7B956 /* UserCell.xib */; };
+		B43D8E5F1AE8BD1000F7B956 /* balloon_read_left.png in Resources */ = {isa = PBXBuildFile; fileRef = B43D8E561AE8BD1000F7B956 /* balloon_read_left.png */; };
+		B43D8E601AE8BD1000F7B956 /* balloon_read_right.png in Resources */ = {isa = PBXBuildFile; fileRef = B43D8E571AE8BD1000F7B956 /* balloon_read_right.png */; };
+		B43D8E611AE8BD1000F7B956 /* balloon_selected_left.png in Resources */ = {isa = PBXBuildFile; fileRef = B43D8E581AE8BD1000F7B956 /* balloon_selected_left.png */; };
+		B43D8E621AE8BD1000F7B956 /* balloon_selected_right.png in Resources */ = {isa = PBXBuildFile; fileRef = B43D8E591AE8BD1000F7B956 /* balloon_selected_right.png */; };
+		B43D8E631AE8BD1000F7B956 /* balloon_unread_left.png in Resources */ = {isa = PBXBuildFile; fileRef = B43D8E5A1AE8BD1000F7B956 /* balloon_unread_left.png */; };
+		B43D8E641AE8BD1000F7B956 /* balloon_unread_right.png in Resources */ = {isa = PBXBuildFile; fileRef = B43D8E5B1AE8BD1000F7B956 /* balloon_unread_right.png */; };
+		B43D8E651AE8BD1000F7B956 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = B43D8E5C1AE8BD1000F7B956 /* LICENSE */; };
+		B43D8E661AE8BD1000F7B956 /* PTSMessagingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B43D8E5E1AE8BD1000F7B956 /* PTSMessagingCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +88,15 @@
 		B43D8E501AE8853A00F7B956 /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
 		B43D8E511AE8853A00F7B956 /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
 		B43D8E521AE8853A00F7B956 /* UserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
+		B43D8E561AE8BD1000F7B956 /* balloon_read_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = balloon_read_left.png; sourceTree = "<group>"; };
+		B43D8E571AE8BD1000F7B956 /* balloon_read_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = balloon_read_right.png; sourceTree = "<group>"; };
+		B43D8E581AE8BD1000F7B956 /* balloon_selected_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = balloon_selected_left.png; sourceTree = "<group>"; };
+		B43D8E591AE8BD1000F7B956 /* balloon_selected_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = balloon_selected_right.png; sourceTree = "<group>"; };
+		B43D8E5A1AE8BD1000F7B956 /* balloon_unread_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = balloon_unread_left.png; sourceTree = "<group>"; };
+		B43D8E5B1AE8BD1000F7B956 /* balloon_unread_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = balloon_unread_right.png; sourceTree = "<group>"; };
+		B43D8E5C1AE8BD1000F7B956 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		B43D8E5D1AE8BD1000F7B956 /* PTSMessagingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTSMessagingCell.h; sourceTree = "<group>"; };
+		B43D8E5E1AE8BD1000F7B956 /* PTSMessagingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTSMessagingCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +155,7 @@
 		B43D8E121ADD850800F7B956 /* Keybase Library */ = {
 			isa = PBXGroup;
 			children = (
+				B43D8E551AE8BD1000F7B956 /* PTSMessagingCell */,
 				B43D8E131ADD850800F7B956 /* AppDelegate.h */,
 				B43D8E141ADD850800F7B956 /* AppDelegate.m */,
 				B43D8E151ADD850800F7B956 /* LaunchScreen.xib */,
@@ -199,6 +217,22 @@
 				B43D8E3D1ADD9E3700F7B956 /* LICENCE.md */,
 			);
 			path = Base64;
+			sourceTree = "<group>";
+		};
+		B43D8E551AE8BD1000F7B956 /* PTSMessagingCell */ = {
+			isa = PBXGroup;
+			children = (
+				B43D8E561AE8BD1000F7B956 /* balloon_read_left.png */,
+				B43D8E571AE8BD1000F7B956 /* balloon_read_right.png */,
+				B43D8E581AE8BD1000F7B956 /* balloon_selected_left.png */,
+				B43D8E591AE8BD1000F7B956 /* balloon_selected_right.png */,
+				B43D8E5A1AE8BD1000F7B956 /* balloon_unread_left.png */,
+				B43D8E5B1AE8BD1000F7B956 /* balloon_unread_right.png */,
+				B43D8E5C1AE8BD1000F7B956 /* LICENSE */,
+				B43D8E5D1AE8BD1000F7B956 /* PTSMessagingCell.h */,
+				B43D8E5E1AE8BD1000F7B956 /* PTSMessagingCell.m */,
+			);
+			path = PTSMessagingCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,10 +315,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B43D8E601AE8BD1000F7B956 /* balloon_read_right.png in Resources */,
+				B43D8E641AE8BD1000F7B956 /* balloon_unread_right.png in Resources */,
+				B43D8E651AE8BD1000F7B956 /* LICENSE in Resources */,
+				B43D8E631AE8BD1000F7B956 /* balloon_unread_left.png in Resources */,
+				B43D8E621AE8BD1000F7B956 /* balloon_selected_right.png in Resources */,
+				B43D8E5F1AE8BD1000F7B956 /* balloon_read_left.png in Resources */,
 				B43D8E321ADD850800F7B956 /* Info.plist in Resources */,
 				B43D8E311ADD850800F7B956 /* Images.xcassets in Resources */,
 				B43D8E4F1AE86C8C00F7B956 /* MessageViewController.xib in Resources */,
 				B43D8E2B1ADD850800F7B956 /* LaunchScreen.xib in Resources */,
+				B43D8E611AE8BD1000F7B956 /* balloon_selected_left.png in Resources */,
 				B43D8E2C1ADD850800F7B956 /* Main.storyboard in Resources */,
 				B43D8E541AE8853A00F7B956 /* UserCell.xib in Resources */,
 			);
@@ -315,6 +356,7 @@
 				B43D8E301ADD850800F7B956 /* HexDecoder.m in Sources */,
 				B43D8E2F1ADD850800F7B956 /* sha256.c in Sources */,
 				B43D8E341ADD850800F7B956 /* main.m in Sources */,
+				B43D8E661AE8BD1000F7B956 /* PTSMessagingCell.m in Sources */,
 				B43D8E471AE178BB00F7B956 /* ConversationStore.m in Sources */,
 				B43D8E531AE8853A00F7B956 /* UserCell.m in Sources */,
 				B43D8E2E1ADD850800F7B956 /* crypto_scrypt-nosse.c in Sources */,

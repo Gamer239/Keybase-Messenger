@@ -8,7 +8,7 @@
 
 #import "MessageViewController.h"
 
-@interface MessageViewController () <UINavigationControllerDelegate>
+@interface MessageViewController () <UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, UISearchDisplayDelegate>
 
 @end
 
@@ -17,7 +17,57 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self.messages reloadData];
+    
 }
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 3;
+}
+
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    UIBarButtonItem* bbl = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(save:)];
+    self.navigationItem.leftBarButtonItem = bbl;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == self.messages)
+    {
+        NSLog(@"tableView");
+    }
+    else
+    {
+        NSLog(@"searchbar");
+    }
+    /*    UITableViewCell* currCell = [[UITableViewCell alloc]
+     initWithStyle:UITableViewCellStyleDefault
+     reuseIdentifier:@"UITableViewCell"]; */
+    //    UITableViewCell* currCell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+    
+    //UserCell* currCell = [tableView dequeueReusableCellWithIdentifier:@"UserCell" forIndexPath:indexPath];
+    
+    UITableViewCell* currCell = [[UITableViewCell alloc] init];
+    
+    //NSArray* items = [[ConversationStore sharedStore] allItems];
+    
+    //Conversation* item = items[indexPath.row];
+    
+    //currCell.textLabel.text = [item description];
+    //currCell.nameLabel.text = item.itemName;
+    //currCell.serialNumberLabel.text = item.serialNumber;
+    //currCell.valueLabel.text = [NSString stringWithFormat:@"$%d", item.valueInDollars];
+    //currCell.thumbnailView.image = item.thumbnail;
+    
+    //__weak UserCell* weakCellReference = currCell;
+    
+
+    
+    return currCell;
+}
+
 
 - (void)viewWillDisappear:(BOOL)animated
 {

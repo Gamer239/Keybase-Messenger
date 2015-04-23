@@ -112,6 +112,8 @@
     //get result string
     NSString *hmac_pwh = hmac(CC_SHA512_DIGEST_LENGTH, cHMAC);
     
+    NSLog(@"hmac_pwh %@", hmac_pwh);
+    
     
     NSString* urlString = [NSString stringWithFormat:@"%@login.json",_keybase_base_url];
     NSURL* url = [NSURL URLWithString:urlString];
@@ -119,7 +121,7 @@
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    NSString* myRequestString = [NSString stringWithFormat:@"email_or_username=%@&hmac_pwh=%@&login_session=%@&csrf_token=%@", email_or_username, hmac_pwh, self.login_session, self.csrf_token];
+    NSString* myRequestString = [NSString stringWithFormat:@"email_or_username=%@&hmac_pwh=%@&login_session=%@", email_or_username, hmac_pwh, self.login_session];
     NSData* requestData = [NSData dataWithBytes:[myRequestString UTF8String] length:[myRequestString length]];
     [request setHTTPBody:requestData];
     [self fetchFeed:request completed:completed];
@@ -156,6 +158,10 @@
             {
                 self.login_session = [jsonData objectForKey:@"login_session"];
             }
+            //if ([jsonData objectForKey:@"status"]  != nil && [jsonData[@"status"] //objectForKey:@"code"] != nil)
+            //{
+              //  _keybase_status = [jsonData[@"status"] objectForKey:@"code"];
+            //}
             //NSLog(@" fetch feed %@", jsonData);
         }
         dispatch_async(dispatch_get_main_queue(), ^{completed(data);});
