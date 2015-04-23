@@ -23,7 +23,7 @@
     if (self)
     {
         UINavigationItem* navItem = self.navigationItem;
-        navItem.title = @"Keybase";
+        navItem.title = @"Keybase Messenger";
         
         UIBarButtonItem* bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewItem:)];
         navItem.rightBarButtonItem = bbi;

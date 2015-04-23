@@ -12,6 +12,7 @@
 
 @property (nonatomic, copy) NSString* itemKey;
 @property (nonatomic, copy) NSString* itemName;
+@property (nonatomic) NSMutableArray* messages;
 
 - (instancetype)initWithItemName:(NSString*)name
                   valueInDollars:(int)value

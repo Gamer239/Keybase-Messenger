@@ -16,14 +16,40 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.messages = [[NSArray alloc] initWithObjects:
+                     @"Hello, how are you.",
+                     @"I'm great, how are you?",
+                     @"I'm fine, thanks. Up for dinner tonight?",
+                     @"Glad to hear. No sorry, I have to work.",
+                     @"Oh that sucks. A pitty, well then - have a nice day.."
+                     @"Thanks! You too. Cuu soon.",
+                     nil];
     // Do any additional setup after loading the view from its nib.
-    [self.messages reloadData];
+    [self.localTableView reloadData];
     
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    if (self.localTableView == tableView)
+    {
+        //NSLog(@"good");
+        return [self.messages count];
+    }
+    else
+    {
+        //NSLog(@"um");
+        return 4;
+    }
+    //return 3;
+}
+
+-(void)awakeFromNib {
+    
+    
+    
+    [super awakeFromNib];
 }
 
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
@@ -32,39 +58,51 @@
     self.navigationItem.leftBarButtonItem = bbl;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGSize messageSize = [PTSMessagingCell messageSize:[self.messages objectAtIndex:indexPath.row]];
+    return messageSize.height + 2*[PTSMessagingCell textMarginVertical] + 40.0f;
+}
+
+-(void)configureCell:(id)cell atIndexPath:(NSIndexPath *)indexPath {
+    PTSMessagingCell* ccell = (PTSMessagingCell*)cell;
+    
+    if (indexPath.row % 2 == 0) {
+        ccell.sent = YES;
+        //ccell.avatarImageView.image = [UIImage imageNamed:@"person1"];
+    } else {
+        ccell.sent = NO;
+        //ccell.avatarImageView.image = [UIImage imageNamed:@"person2"];
+    }
+    
+    ccell.messageLabel.text = [_messages objectAtIndex:indexPath.row];
+    //ccell.timeLabel.text = @"2012-08-29";
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.messages)
+    if (tableView == self.localTableView)
     {
-        NSLog(@"tableView");
+        //NSLog(@"tableView");
+        static NSString* cellIdentifier = @"messagingCell";
+        
+        PTSMessagingCell * cell = (PTSMessagingCell*) [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[PTSMessagingCell alloc] initMessagingCellWithReuseIdentifier:cellIdentifier];
+        }
+        
+        [self configureCell:cell atIndexPath:indexPath];
+        
+        return cell;
+        
     }
     else
     {
         NSLog(@"searchbar");
     }
-    /*    UITableViewCell* currCell = [[UITableViewCell alloc]
-     initWithStyle:UITableViewCellStyleDefault
-     reuseIdentifier:@"UITableViewCell"]; */
-    //    UITableViewCell* currCell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
-    
-    //UserCell* currCell = [tableView dequeueReusableCellWithIdentifier:@"UserCell" forIndexPath:indexPath];
-    
-    UITableViewCell* currCell = [[UITableViewCell alloc] init];
-    
-    //NSArray* items = [[ConversationStore sharedStore] allItems];
-    
-    //Conversation* item = items[indexPath.row];
-    
-    //currCell.textLabel.text = [item description];
-    //currCell.nameLabel.text = item.itemName;
-    //currCell.serialNumberLabel.text = item.serialNumber;
-    //currCell.valueLabel.text = [NSString stringWithFormat:@"$%d", item.valueInDollars];
-    //currCell.thumbnailView.image = item.thumbnail;
-    
-    //__weak UserCell* weakCellReference = currCell;
-    
 
     
+    UITableViewCell* currCell = [[UITableViewCell alloc] init];
     return currCell;
 }
 
@@ -111,6 +149,10 @@
 - (void)save:(id)sender
 {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:self.dismissBlock];
+    if (self.searchBar.text.length > 0)
+    {
+        self.currentItem.itemName = self.searchBar.text;
+    }
 }
 
 - (void)cancel:(id)sender
