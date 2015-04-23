@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "KeybaseUserTableViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,16 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
     // Override point for customization after application launch.
+    KeybaseUserTableViewController* itemsViewController = [[KeybaseUserTableViewController alloc] init];
+    UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController:itemsViewController];
+    
+    self.window.rootViewController = navController;
+    
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

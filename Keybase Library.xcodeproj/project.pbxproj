@@ -22,7 +22,12 @@
 		B43D8E3E1ADD9E3700F7B956 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B43D8E3C1ADD9E3700F7B956 /* Base64.m */; };
 		B43D8E3F1ADD9E3700F7B956 /* LICENCE.md in Sources */ = {isa = PBXBuildFile; fileRef = B43D8E3D1ADD9E3700F7B956 /* LICENCE.md */; };
 		B43D8E431AE00A2800F7B956 /* KeybaseUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B43D8E411AE00A2800F7B956 /* KeybaseUserTableViewController.m */; };
-		B43D8E441AE00A2800F7B956 /* KeybaseUserTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B43D8E421AE00A2800F7B956 /* KeybaseUserTableViewController.xib */; };
+		B43D8E471AE178BB00F7B956 /* ConversationStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B43D8E461AE178BB00F7B956 /* ConversationStore.m */; };
+		B43D8E4A1AE17DC300F7B956 /* Conversation.m in Sources */ = {isa = PBXBuildFile; fileRef = B43D8E491AE17DC300F7B956 /* Conversation.m */; };
+		B43D8E4E1AE86C8C00F7B956 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B43D8E4C1AE86C8C00F7B956 /* MessageViewController.m */; };
+		B43D8E4F1AE86C8C00F7B956 /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B43D8E4D1AE86C8C00F7B956 /* MessageViewController.xib */; };
+		B43D8E531AE8853A00F7B956 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B43D8E511AE8853A00F7B956 /* UserCell.m */; };
+		B43D8E541AE8853A00F7B956 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B43D8E521AE8853A00F7B956 /* UserCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +70,16 @@
 		B43D8E3D1ADD9E3700F7B956 /* LICENCE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENCE.md; sourceTree = "<group>"; };
 		B43D8E401AE00A2800F7B956 /* KeybaseUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeybaseUserTableViewController.h; sourceTree = "<group>"; };
 		B43D8E411AE00A2800F7B956 /* KeybaseUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeybaseUserTableViewController.m; sourceTree = "<group>"; };
-		B43D8E421AE00A2800F7B956 /* KeybaseUserTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KeybaseUserTableViewController.xib; sourceTree = "<group>"; };
+		B43D8E451AE178BB00F7B956 /* ConversationStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationStore.h; sourceTree = "<group>"; };
+		B43D8E461AE178BB00F7B956 /* ConversationStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationStore.m; sourceTree = "<group>"; };
+		B43D8E481AE17DC300F7B956 /* Conversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Conversation.h; sourceTree = "<group>"; };
+		B43D8E491AE17DC300F7B956 /* Conversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Conversation.m; sourceTree = "<group>"; };
+		B43D8E4B1AE86C8C00F7B956 /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
+		B43D8E4C1AE86C8C00F7B956 /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		B43D8E4D1AE86C8C00F7B956 /* MessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageViewController.xib; sourceTree = "<group>"; };
+		B43D8E501AE8853A00F7B956 /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
+		B43D8E511AE8853A00F7B956 /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
+		B43D8E521AE8853A00F7B956 /* UserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,7 +144,16 @@
 				B43D8E171ADD850800F7B956 /* Main.storyboard */,
 				B43D8E401AE00A2800F7B956 /* KeybaseUserTableViewController.h */,
 				B43D8E411AE00A2800F7B956 /* KeybaseUserTableViewController.m */,
-				B43D8E421AE00A2800F7B956 /* KeybaseUserTableViewController.xib */,
+				B43D8E501AE8853A00F7B956 /* UserCell.h */,
+				B43D8E511AE8853A00F7B956 /* UserCell.m */,
+				B43D8E521AE8853A00F7B956 /* UserCell.xib */,
+				B43D8E4B1AE86C8C00F7B956 /* MessageViewController.h */,
+				B43D8E4C1AE86C8C00F7B956 /* MessageViewController.m */,
+				B43D8E4D1AE86C8C00F7B956 /* MessageViewController.xib */,
+				B43D8E451AE178BB00F7B956 /* ConversationStore.h */,
+				B43D8E461AE178BB00F7B956 /* ConversationStore.m */,
+				B43D8E481AE17DC300F7B956 /* Conversation.h */,
+				B43D8E491AE17DC300F7B956 /* Conversation.m */,
 				B43D8E191ADD850800F7B956 /* crypto */,
 				B43D8E201ADD850800F7B956 /* CryptoHelper */,
 				B43D8E231ADD850800F7B956 /* Images.xcassets */,
@@ -260,9 +283,10 @@
 			files = (
 				B43D8E321ADD850800F7B956 /* Info.plist in Resources */,
 				B43D8E311ADD850800F7B956 /* Images.xcassets in Resources */,
-				B43D8E441AE00A2800F7B956 /* KeybaseUserTableViewController.xib in Resources */,
+				B43D8E4F1AE86C8C00F7B956 /* MessageViewController.xib in Resources */,
 				B43D8E2B1ADD850800F7B956 /* LaunchScreen.xib in Resources */,
 				B43D8E2C1ADD850800F7B956 /* Main.storyboard in Resources */,
+				B43D8E541AE8853A00F7B956 /* UserCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,7 +304,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B43D8E4A1AE17DC300F7B956 /* Conversation.m in Sources */,
 				B43D8E3E1ADD9E3700F7B956 /* Base64.m in Sources */,
+				B43D8E4E1AE86C8C00F7B956 /* MessageViewController.m in Sources */,
 				B43D8E2A1ADD850800F7B956 /* AppDelegate.m in Sources */,
 				B43D8E431AE00A2800F7B956 /* KeybaseUserTableViewController.m in Sources */,
 				B43D8E3F1ADD9E3700F7B956 /* LICENCE.md in Sources */,
@@ -289,6 +315,8 @@
 				B43D8E301ADD850800F7B956 /* HexDecoder.m in Sources */,
 				B43D8E2F1ADD850800F7B956 /* sha256.c in Sources */,
 				B43D8E341ADD850800F7B956 /* main.m in Sources */,
+				B43D8E471AE178BB00F7B956 /* ConversationStore.m in Sources */,
+				B43D8E531AE8853A00F7B956 /* UserCell.m in Sources */,
 				B43D8E2E1ADD850800F7B956 /* crypto_scrypt-nosse.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

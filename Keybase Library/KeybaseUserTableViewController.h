@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ConversationStore.h"
+#import "Conversation.h"
+#import "MessageViewController.h"
+#import "UserCell.h"
 
-@interface KeybaseUserTableViewController : UITableViewController
+@interface KeybaseUserTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end
