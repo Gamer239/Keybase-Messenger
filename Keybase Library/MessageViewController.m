@@ -24,6 +24,9 @@
     self.results = [[NSMutableArray alloc] initWithCapacity:10];
     self.searchBar.text = self.currentItem.itemName;
     // Do any additional setup after loading the view from its nib.
+    [_textBox addTarget:_textBox
+                  action:@selector(resignFirstResponder)
+        forControlEvents:UIControlEventEditingDidEndOnExit];
     [self.localTableView reloadData];
     
 }
@@ -70,7 +73,7 @@
     if (tableView != self.localTableView)
     {
         self.currentItem.itemName = [self.results objectAtIndex:indexPath.row];
-        
+        //[self.searchController setActive:NO animated:YES];
     }
 }
 
