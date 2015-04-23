@@ -17,14 +17,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.messages = [[NSArray alloc] initWithObjects:
-                     @"Hello, how are you.",
-                     @"I'm great, how are you?",
-                     @"I'm fine, thanks. Up for dinner tonight?",
-                     @"Glad to hear. No sorry, I have to work.",
-                     @"Oh that sucks. A pitty, well then - have a nice day.."
-                     @"Thanks! You too. Cuu soon.",
-                     nil];
+    [[Keybase KeybaseLib] keybase_getsalt:@"gamer239" completed:^(NSData* data){
+    }];
+    
+    self.messages = self.currentItem.messages;
+    self.results = [[NSMutableArray alloc] initWithCapacity:10];
+    self.searchBar.text = self.currentItem.itemName;
     // Do any additional setup after loading the view from its nib.
     [self.localTableView reloadData];
     
@@ -39,17 +37,26 @@
     }
     else
     {
-        //NSLog(@"um");
-        return 4;
+        //[tableView insertRowsAtIndexPaths:self.results withRowAnimation:UITableViewRowAnimationAutomatic];
+        NSLog(@"%lu", (unsigned long)[self.results count]);
+        return [self.results count];
     }
     //return 3;
 }
 
--(void)awakeFromNib {
+-(IBAction)sendMessage:(id)sender
+{
+    [self.currentItem.messages insertObject:self.textBox.text atIndex:self.currentItem.messages.count];
+    self.textBox.text = @"";
+    
+    NSArray* adjectives = @[@"This is a very quip remark.", @"I love your hair cut.", @"You're so funny. Why didn't I think of that?", @"You look like a potato.", @"Let's play hide and go seek!"];
+    NSInteger adjectiveIndex = arc4random() % adjectives.count;
+    NSString* randomItemName = [NSString stringWithFormat:@"%@",
+                                adjectives[adjectiveIndex]];
+    [self.currentItem.messages insertObject:randomItemName atIndex:self.currentItem.messages.count];
     
     
-    
-    [super awakeFromNib];
+    [self.localTableView reloadData];
 }
 
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
@@ -58,9 +65,97 @@
     self.navigationItem.leftBarButtonItem = bbl;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView != self.localTableView)
+    {
+        self.currentItem.itemName = [self.results objectAtIndex:indexPath.row];
+        
+    }
+}
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    
+    self.currentItem.itemName = searchText;
+    
+    [[Keybase KeybaseLib] keybase_autocomplete:searchText completed:^(NSData* data){ NSDictionary* jsonData = [[Keybase KeybaseLib] convertJsonData:data]; NSLog(@"%@", jsonData);
+        [self.results removeAllObjects];
+        NSArray* results2 = [jsonData objectForKey:@"completions"];
+        NSLog(@"%@", results2);
+        for( int i = 0; i < results2.count; i++)
+        {
+            NSString* components = [[[[results2 objectAtIndex:i] objectForKey:@"components"] objectForKey:@"username"] objectForKey:@"val"];
+            NSLog(@"username %@", components);
+            [self.results insertObject:components atIndex:self.results.count ];
+            
+            //[self.results addObject:components];
+            
+            //searchBar.delegate = self;
+            
+            //components = [[[[results objectAtIndex:i] objectForKey:@"components"] objectForKey:@"full_name"] objectForKey:@"val"];
+            //NSLog(@"full name %@", components);
+            
+        }
+        //self.label.text = [[[[results objectAtIndex:0] objectForKey:@"components"] objectForKey:@"username"] objectForKey:@"val"];
+        
+    }];
+    NSString* addthis = @"addThis";
+    //[self.results insertObject:addthis atIndex:self.results.count];
+    
+    //self.results = [[NSMutableArray alloc] initWithObjects:searchText, nil];
+    //self.searchController.searchResultsDataSource
+    //[self.results insertObject:searchText atIndex:0];
+    //[self.searchController.searchContentsController.searchDisplayController.searchResultsDataSource
+    //[self.searchController.searchResultsTableView reloadData];
+    
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView;
+{
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 1)];
+    footer.backgroundColor = [UIColor clearColor];
+    [tableView setTableFooterView:footer];
+}
+
+-(IBAction)textEdit:(id)sender
+{
+    self.currentItem.itemName = self.searchBar.text;
+    //[self.results removeAllObjects];
+    [[Keybase KeybaseLib] keybase_autocomplete:self.searchBar.text
+            completed:^(NSData* data){ NSDictionary* jsonData = [[Keybase KeybaseLib] convertJsonData:data]; NSLog(@"%@", jsonData);
+        
+        NSArray* results = [jsonData objectForKey:@"completions"];
+        NSLog(@"%@", results);
+        for( int i = 0; i < results.count; i++)
+        {
+            NSArray* components = [[[[results objectAtIndex:i] objectForKey:@"components"] objectForKey:@"username"] objectForKey:@"val"];
+            NSLog(@"username %@", components);
+            
+            //searchBar.delegate = self;
+            
+            //components = [[[[results objectAtIndex:i] objectForKey:@"components"] objectForKey:@"full_name"] objectForKey:@"val"];
+            //NSLog(@"full name %@", components);
+            
+        }
+        self.label.text = [[[[results objectAtIndex:0] objectForKey:@"components"] objectForKey:@"username"] objectForKey:@"val"];
+        
+    }];
+    //self.results = [[NSMutableArray alloc] initWithObjects:searchText, nil];
+    //self.searchController.searchResultsDataSource
+    //[self.results insertObject:searchText atIndex:0];
+    //[self.searchController.searchContentsController.searchDisplayController.searchResultsDataSource
+    //[self.searchController.searchResultsTableView reloadData];
+}
+
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (tableView != self.localTableView)
+    {
+        return 40.0f;
+    }
     CGSize messageSize = [PTSMessagingCell messageSize:[self.messages objectAtIndex:indexPath.row]];
-    return messageSize.height + 2*[PTSMessagingCell textMarginVertical] + 40.0f;
+    return messageSize.height  + 40.0f;
 }
 
 -(void)configureCell:(id)cell atIndexPath:(NSIndexPath *)indexPath {
@@ -98,11 +193,13 @@
     }
     else
     {
+        
         NSLog(@"searchbar");
     }
 
     
     UITableViewCell* currCell = [[UITableViewCell alloc] init];
+    currCell.text = [self.results objectAtIndex:indexPath.row];
     return currCell;
 }
 
@@ -151,7 +248,7 @@
     [self.presentingViewController dismissViewControllerAnimated:YES completion:self.dismissBlock];
     if (self.searchBar.text.length > 0)
     {
-        self.currentItem.itemName = self.searchBar.text;
+        //self.currentItem.itemName = self.searchBar.text;
     }
 }
 

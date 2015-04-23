@@ -79,7 +79,13 @@
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    NSString* myRequestString = [NSString stringWithFormat:@"csrf_token=%@&q=%@", self.csrf_token, q];
+    ///////
+    
+    //[request setAllHTTPHeaderFields:[NSHTTPCookie requestHeaderFieldsWithCookies:[[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url]]];
+    
+    //[request addValue:self.csrf_cookie forHTTPHeaderField:@"X_CSRFTOKEN"];
+    //////
+    NSString* myRequestString = [NSString stringWithFormat:@"q=%@&csrf_token=%@",q, self.csrf_token];
     NSLog(@"%@", myRequestString);
     NSData* requestData = [NSData dataWithBytes:[myRequestString UTF8String] length:[myRequestString length]];
     [request setHTTPBody:requestData];
@@ -136,6 +142,10 @@
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    /////
+    [request setHTTPShouldHandleCookies:YES];
+    [request setAllHTTPHeaderFields:[NSHTTPCookie requestHeaderFieldsWithCookies:[[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url]]];
+    /////
     NSString* myRequestString = [NSString stringWithFormat:@"email_or_username=%@", email_or_username];
     NSData* requestData = [NSData dataWithBytes:[myRequestString UTF8String] length:[myRequestString length]];
     [request setHTTPBody:requestData];
@@ -150,19 +160,32 @@
         {
             NSDictionary* jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             self.csrf_token = [jsonData objectForKey:@"csrf_token"];
-            if ([jsonData objectForKey:@"salt"] != nil)
-            {
-                self.salt = [jsonData objectForKey:@"salt"];
-            }
-            if ([jsonData objectForKey:@"login_session"] != nil)
-            {
-                self.login_session = [jsonData objectForKey:@"login_session"];
-            }
+            //if ([jsonData objectForKey:@"salt"] != nil)
+            //{
+             //   self.salt = [jsonData objectForKey:@"salt"];
+             //   NSString* urlString = [NSString stringWithFormat:@"%@getsalt.json",_keybase_base_url];
+            //   NSURL* url = [NSURL URLWithString:urlString];
+              //  NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:[(NSHTTPURLResponse *)response allHeaderFields] forURL:url];
+             //   [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookies:cookies forURL:url mainDocumentURL:nil];
+                // for some reason we need to re-store the CSRF token as X_CSRFTOKEN
+//for (NSHTTPCookie *cookie in cookies) {
+              ///      if ([cookie.name isEqualToString:@"csrftoken"]) {
+               //         self.csrf_token = cookie.value;
+                //        break;
+                //    }
+               // }
+           // }
+            //if ([jsonData objectForKey:@"login_session"] != nil)
+            //{
+            //    self.login_session = [jsonData objectForKey:@"login_session"];
+            //}
             //if ([jsonData objectForKey:@"status"]  != nil && [jsonData[@"status"] //objectForKey:@"code"] != nil)
             //{
               //  _keybase_status = [jsonData[@"status"] objectForKey:@"code"];
             //}
-            //NSLog(@" fetch feed %@", jsonData);
+            //NSLog(@" fetch feed %@", self.csrf_token);
+            
+            
         }
         dispatch_async(dispatch_get_main_queue(), ^{completed(data);});
     }];

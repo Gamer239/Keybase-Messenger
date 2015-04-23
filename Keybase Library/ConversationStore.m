@@ -34,8 +34,8 @@
     
     if (self)
     {
-        //NSString* path = [self itemArchivePath];
-        //_privateItems = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+        NSString* path = [self itemArchivePath];
+        _privateItems = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
         
         if (!_privateItems)
         {
@@ -43,6 +43,13 @@
         }
     }
     return self;
+}
+
+-(BOOL)saveChanges
+{
+    NSString* path = [self itemArchivePath];
+    
+    return [NSKeyedArchiver archiveRootObject:self.privateItems toFile:path];
 }
 
 - (instancetype)init
@@ -95,13 +102,6 @@
     [self.privateItems addObject:randomItem];
     
     return randomItem;
-}
-
--(BOOL)saveChanges
-{
-    NSString* path = [self itemArchivePath];
-    
-    return [NSKeyedArchiver archiveRootObject:self.privateItems toFile:path];
 }
 
 @end

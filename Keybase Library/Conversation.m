@@ -12,8 +12,8 @@
 
 + (instancetype)newItem
 {
-    NSArray* adjectives = @[@"Sparkly", @"Dull", @"Fast", @"Slow", @"Chewy"];
-    NSArray* nouns = @[@"Bike", @"Slim Jims", @"iPhone", @"Pumpkin Spice Latte"];
+    NSArray* adjectives = @[@"Kit", @"Ryan", @"Zach", @"Dylan", @"AJ"];
+    NSArray* nouns = @[@"the Slayer", @"the Slow", @"the Fast", @"the Latte"];
     
     NSInteger adjectiveIndex = arc4random() % adjectives.count;
     NSInteger nounIndex = arc4random() % nouns.count;
@@ -27,6 +27,7 @@
     NSString* randomSerialNumber = [NSString stringWithFormat:@"%c%c%c%c%c", '0'+ arc4random() % 10, 'A' + arc4random() % 26, '0' + arc4random() % 10, 'A' + arc4random() % 26, '0' + arc4random() % 10];
     
     Conversation* newItem = [[self alloc] initWithItemName:randomItemName valueInDollars:randomValue serialNumber:randomSerialNumber];
+    
     
     return newItem;
 }
@@ -48,6 +49,7 @@
         
         NSUUID* uuid = [[NSUUID alloc] init];
         _itemKey = [uuid UUIDString];
+        self.messages = [[NSMutableArray alloc] init];
     }
     
     return self;

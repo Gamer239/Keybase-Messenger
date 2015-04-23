@@ -31,6 +31,7 @@
         UIBarButtonItem* bbl = [[UIBarButtonItem alloc] initWithTitle:@"Login" style:UIBarButtonItemStylePlain target:self action:@selector(keybaseLogin:)];
         
         navItem.leftBarButtonItem = bbl;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     
     return self;
