@@ -77,6 +77,12 @@
     }
 }
 
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    searchBar.text = self.currentItem.itemName;
+    searchBar.placeholder = self.currentItem.itemName;
+}
+
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     
